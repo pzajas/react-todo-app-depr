@@ -1,3 +1,5 @@
+//TODO
+
 export interface InterfaceTodo {
   title: string
   id: number
@@ -14,4 +16,10 @@ export interface InterfaceTodoItem {
 
 export interface InterfaceState {
   todos: InterfaceTodo[]
+}
+
+//SEARCH
+
+export interface InterfaceSearchPhrase {
+  search: string
 }
