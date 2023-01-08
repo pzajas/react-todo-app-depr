@@ -1,21 +1,15 @@
 import { FormEvent, useState } from "react"
 import { useDispatch } from "react-redux"
+import { updateTodo } from "../redux/slice/todoSlice"
 import { InterfaceTodoItem } from "../interfaces/todoInterface"
-import { deleteTodo, completeTodo, updateTodo } from "../redux/slice/todoSlice"
+
+import TodoButtonContainer from "../elements/buttons/TodoButtonContainer"
 
 const TodoItem = ({ todo }: InterfaceTodoItem) => {
   const [editInputActive, setEditInputActive] = useState(false)
   const [userEditInput, setUserEditInput] = useState("")
 
   const dispatch = useDispatch()
-
-  const handleDeleteUserTodo = () => {
-    dispatch(deleteTodo({ id: todo.id }))
-  }
-
-  const handleCompleteUserTodo = () => {
-    dispatch(completeTodo({ id: todo.id, completed: !todo.completed }))
-  }
 
   const handleToggleEditInput = () => {
     setEditInputActive(!editInputActive)
@@ -39,14 +33,13 @@ const TodoItem = ({ todo }: InterfaceTodoItem) => {
     <div>
       {editInputActive ? (
         <form onSubmit={handleSubmitEditedTodo}>
-          <input value={userEditInput} onChange={handleChangeUserInput} />
+          <input value={userEditInput} onChange={handleChangeUserInput} autoFocus />
           <button>Update</button>
         </form>
       ) : (
         <li>
-          {todo.title} <button onClick={handleDeleteUserTodo}>del</button>
-          <button onClick={handleCompleteUserTodo}>com</button>
-          <button onClick={handleToggleEditInput}>Update</button>
+          <div onClick={handleToggleEditInput}>{todo.title}</div>
+          <TodoButtonContainer todo={todo} />
         </li>
       )}
     </div>
