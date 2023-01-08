@@ -5,8 +5,8 @@ import { clearTodos } from "../redux/slice/todoSlice"
 import TodoItem from "./TodoItem"
 
 const TodoList = () => {
-  const todos = useSelector((state: InterfaceState) => state.todos)
-  const searchPhrase = useSelector((state: InterfaceSearchPhrase) => state.search)
+  const todos = useSelector((state: InterfaceState) => state.globalReducer.todos)
+  const searchPhrase = useSelector((state: InterfaceSearchPhrase) => state.globalReducer.search)
 
   const dispatch = useDispatch()
 

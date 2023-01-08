@@ -7,19 +7,19 @@ export interface InterfaceTodo {
 }
 
 export interface InterfaceTodoItem {
-  todo: {
-    title: string
-    id: number
-    completed: boolean
-  }
+  todo: InterfaceTodo
 }
 
 export interface InterfaceState {
-  todos: InterfaceTodo[]
+  globalReducer: {
+    todos: InterfaceTodo[]
+  }
 }
 
 //SEARCH
 
 export interface InterfaceSearchPhrase {
-  search: string
+  globalReducer: {
+    search: string
+  }
 }
