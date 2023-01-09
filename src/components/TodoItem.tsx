@@ -4,6 +4,37 @@ import { updateTodo } from "../redux/slice/todoSlice"
 import { InterfaceTodoItem } from "../interfaces/todoInterface"
 
 import TodoButtonContainer from "../elements/buttons/TodoButtonContainer"
+import styled from "styled-components"
+
+const StyledTodoItemContainer = styled.li`
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  background-color: #404040;
+  border-radius: 2px;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #505050;
+  }
+`
+
+const StyledFormContainer = styled.form`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+
+const StyledTodoText = styled.div`
+  margin-left: 0.5rem;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+`
 
 const TodoItem = ({ todo }: InterfaceTodoItem) => {
   const [editInputActive, setEditInputActive] = useState(false)
@@ -32,15 +63,15 @@ const TodoItem = ({ todo }: InterfaceTodoItem) => {
   return (
     <div>
       {editInputActive ? (
-        <form onSubmit={handleSubmitEditedTodo}>
+        <StyledFormContainer onSubmit={handleSubmitEditedTodo}>
           <input value={userEditInput} onChange={handleChangeUserInput} autoFocus />
           <button>Update</button>
-        </form>
+        </StyledFormContainer>
       ) : (
-        <li>
-          <div onClick={handleToggleEditInput}>{todo.title}</div>
+        <StyledTodoItemContainer>
+          <StyledTodoText onClick={handleToggleEditInput}>{todo.title}</StyledTodoText>
           <TodoButtonContainer todo={todo} />
-        </li>
+        </StyledTodoItemContainer>
       )}
     </div>
   )
