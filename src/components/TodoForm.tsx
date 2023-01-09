@@ -3,6 +3,31 @@ import { useDispatch } from "react-redux"
 import { addTodo } from "../redux/slice/todoSlice"
 import { updateSearchQuery } from "../redux/slice/searchSlice"
 
+import styled from "styled-components"
+
+const StyledFormContainerWithButtons = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const StyledFormContainer = styled.form`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+
+const StyledInputField = styled.input`
+  border: none;
+  background: #262626;
+  color: white;
+  outline: none;
+  width: 100%;
+  height: 1.6rem;
+  padding-left: 0.5rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+`
+
 const TodoForm = () => {
   const [userInput, setUserInput] = useState("")
   const [toggleSearchBar, setToggleSearchBar] = useState(false)
@@ -35,18 +60,18 @@ const TodoForm = () => {
   }
 
   return (
-    <div>
+    <StyledFormContainerWithButtons>
       {toggleSearchBar ? (
-        <input value={searchValue} onChange={handleChangeSearchInput} />
+        <StyledInputField value={searchValue} onChange={handleChangeSearchInput} />
       ) : (
-        <form onSubmit={handleSubmitUserInput}>
-          <input onChange={handleChangeUserInput} value={userInput} />
+        <StyledFormContainer onSubmit={handleSubmitUserInput}>
+          <StyledInputField onChange={handleChangeUserInput} value={userInput} />
           <button>Submit</button>
-        </form>
+        </StyledFormContainer>
       )}
 
       <button onClick={handleToggleSearchBar}>Search</button>
-    </div>
+    </StyledFormContainerWithButtons>
   )
 }
 
